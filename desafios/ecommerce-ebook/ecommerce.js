@@ -1,44 +1,35 @@
-const User = require("./user")
+const Product = require("./product")
 
 class Ecommerce {
-    registeredUsers = []
-    books = []
+    products //array q não foi instanciado e portanto o programa não sabe que é um array e não posso dar push
+    loggedUsers = []
 
-    createUser(user) {
-        const newUser = new User(user);
-        this.registeredUsers.push(newUser);
-        // this.registeredUsers.push(new User(user))
+    constructor(products) {
+        this.products = products //aqui o array esta sendo instanciado pq recebeu objetos do tipo array 
     }
 
-    // arrow function
-    // funcao anonima
-    login = (email, password) => {
-        const user = this.registeredUsers.find(user => user.email === email && user.password === password)
-        return user;
-        // return this.registeredUsers.find(user => user.email === email && user.password === password)
+    addProduct(product) {
+        this.products.push(product)
     }
 
-    addBook(book) {
-        this.books.push(book);
+    addLoggedUsers(user) {
+        this.loggedUsers.push(user)
     }
+    /*
+        removeProduct(nameEbook){
+            let index = this.products.indexOf(nameEbook)
+        }*/
 
-    removeBook(name) {
-        const index = books.indexOf(book => book.name === name);
-        if(index >= 0)
-            this.books = books.splice(index, 1)
-        return this.books;
+    
+    removeProduct(name) {
+        for (var i = 0; i < this.products.length; i++)
+            if (this.products[i].name === name) {
+                this.products.splice(i, 1);
+                break;
+            }
     }
+    
 }
 
-module.exports = Ecommerce
 
-// o codigo le a classe Ecommerce
-    // criar a variavel registeredUser
-    // criar a funcao createUser
-    // criar a funcao anonima login
-    
-
-    // C    Create
-    // R    Read    
-    // U    Update
-    // D    Delete
+module.exports = Ecommerce //exportando a classe Ecommerce para que consiga usar em outros arquivos
